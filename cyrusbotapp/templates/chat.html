@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Cyrus</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Chat with Cyrus</h1>
+    <div class="chat-container">
+        <div class="messages" id="chat-box"></div>
+        <div class="input-container">
+            <button class="voice-button" onclick="startListening()">🎤</button>
+            <input type="text" id="user-input" placeholder="Type or speak your message...">
+            <button onclick="sendMessage()">Send</button>
+            <button class="stop-button" onclick="stopSpeech()">🛑 Stop Speech</button>
+        </div>
+    </div>
+
+    <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

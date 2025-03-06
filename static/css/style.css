@@ -1,0 +1,49 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.chat-container {
+    max-width: 500px;
+    margin: auto;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.messages {
+    text-align: left;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+}
+
+button {
+    padding: 10px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.voice-button {
+    background: red;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}

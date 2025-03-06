@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyrus</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: black;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .navbar button {
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            background: none;
+            color: white;
+            font-size: 16px;
+            border-bottom: 2px solid transparent;
+        }
+        .navbar button.active {
+            border-bottom: 2px solid blue;
+        }
+        .section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .content {
+            max-width: 50%;
+            color: white;
+            text-align: center;
+        }
+        .bubble-animation {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-10vh); }
+        }
+        .chat-button {
+            padding: 15px 30px;
+            background: blue;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button id="home-btn" class="active" onclick="scrollToSection('home', this)">Home</button>
+        <button id="about-btn" onclick="scrollToSection('about', this)">About Us</button>
+    </div>
+    <div id="home" class="section">
+        <div class="bubble-animation"></div>
+        <div class="content">
+            <h1>Welcome to Our Website</h1>
+            <p>This is a beautiful dark-themed background with smooth bubble animations.</p>
+            <button class="chat-button" onclick="window.location.href='/chat/'">Chat with Cyrus</button>
+
+        </div>
+    </div>
+    <div id="about" class="section">
+        <img src="about-image.jpg" alt="About Us" style="width: 40%; border-radius: 10px;">
+        <div class="content">
+            <h1>About Us</h1>
+            <p>We are a creative team passionate about innovative designs.</p>
+        </div>
+    </div>
+    <script>
+        function scrollToSection(sectionId, button) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            
+            document.querySelectorAll('.navbar button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+        
+        function createBubbles() {
+            const animationContainer = document.querySelector('.bubble-animation');
+            for (let i = 0; i < 50; i++) {
+                let bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                let size = Math.random() * 30 + 10;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + 'vw';
+                bubble.style.animationDuration = Math.random() * 3 + 2 + 's';
+                
+                let colors = ["rgba(0, 0, 255, 0.5)", "rgba(128, 0, 128, 0.5)"];
+                bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                animationContainer.appendChild(bubble);
+            }
+        }
+        createBubbles();
+    </script>
+</body>
+</html>
